@@ -53,8 +53,18 @@ async function main() {
       "details" : "Sold by Samir",
       "url": "jacket.jgp"
     };
-    //grocery
     let pr6 = {
+      "name": "t-shirt",
+      "category": "clothes",
+      "size" : "m",
+      "gender": "male",
+      "brand" : "shop and stop",
+      "price" : 170,
+      "details" : "Sold by Samir",
+      "url": "tshirt.jpg"
+    };
+    //grocery
+    let pr7 = {
       "name": "milk",
       "category": "groceries",
       "size" :null,
@@ -64,7 +74,7 @@ async function main() {
       "details" : "Sold by Madhu",
       "url": "milk.jgp"
     };
-    let pr7 = {
+    let pr8 = {
       "name": "bread",
       "category": "groceries",
       "size" :null,
@@ -74,7 +84,7 @@ async function main() {
       "details" : "Sold by Madhu",
       "url": "bread.jgp"
     };
-    let pr8 = {
+    let pr9 = {
       "name": "cheese",
       "category": "groceries",
       "size" :null,
@@ -84,7 +94,7 @@ async function main() {
       "details" : "Sold by Madhu",
       "url": "cheese.jgp"
     };
-    let pr9 = {
+    let pr10 = {
       "name": "cereal",
       "category": "groceries",
       "size" :null,
@@ -94,7 +104,7 @@ async function main() {
       "details" : "Sold by Madhu",
       "url": "cereal.jgp"
     };
-    let pr10 = {
+    let pr11 = {
       "name": "ice cream",
       "category": "groceries",
       "size" :null,
@@ -104,7 +114,7 @@ async function main() {
       "details" : "Sold by Madhu",
       "url": "ice-cream.jgp"
     };
-    let pr11 = {
+    let pr12 = {
       "name": "Refrigerator",
       "category": "electronics",
       "size" :null,
@@ -114,7 +124,7 @@ async function main() {
       "details" : "Sold by Rajit",
       "url": "refrigerator.jgp"
     };
-    let pr12 = {
+    let pr13 = {
       "name": "TV",
       "category": "electronics",
       "size" :null,
@@ -124,7 +134,7 @@ async function main() {
       "details" : "Sold by Rajit",
       "url": "tv.jgp"
     };
-    let pr13 = {
+    let pr14 = {
       "name": "ps5",
       "category": "electronics",
       "size" :null,
@@ -134,7 +144,7 @@ async function main() {
       "details" : "Sold by Rajit",
       "url": "ps5.jgp"
     };
-    let pr14 = {
+    let pr15 = {
       "name": "camera",
       "category": "electronics",
       "size" :null,
@@ -144,7 +154,7 @@ async function main() {
       "details" : "Sold by Rajit",
       "url": "camera.jgp"
     };
-    let pr15 = {
+    let pr16 = {
       "name": "laptop",
       "category": "electronics",
       "size" :null,
@@ -170,6 +180,7 @@ async function main() {
     var product13 = await productsData.addProduct(pr13);
     var product14 = await productsData.addProduct(pr14);
     var product15 = await productsData.addProduct(pr15);
+    var product15 = await productsData.addProduct(pr16);
 
     await db.serverConfig.close();
 }
