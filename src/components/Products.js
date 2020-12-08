@@ -5,6 +5,8 @@ import ReactPaginate from 'react-paginate';
 import { Card, CardActionArea, CardContent, CardMedia, Grid, Typography, makeStyles } from '@material-ui/core';
 import md5 from 'blueimp-md5';
 import '../App.css';
+import noImage from '../img/download.jpeg';
+import Search from './Search';
 const useStyles = makeStyles({
     card: {
         maxWidth: 250,
@@ -58,6 +60,30 @@ const Products = (props) => {
     const options = {
         headers: {"Access-Control-Allow-Origin": "*"}
        };
+       useEffect(
+        () => {
+            console.log('search useEffect fired');
+            async function fetchData() {
+                const url = "http://127.0.0.1:5000/products/search";
+                try {
+                    console.log(`in fetch searchTerm: ${searchTerm}`);
+                    const { data } = await axios.get(url + '?c=' + searchTerm);
+                    console.log(url + '&c=' + searchTerm)
+                    console.log("serachdata: "+JSON.stringify(data));
+                    setSearchData(data);
+                    setLoading(false);
+                } catch (e) {
+                    setLoading(false);
+                    setError(e.message);
+                    console.log(e);
+                }
+            }
+            if (searchTerm) {
+                fetchData();
+            }
+        },
+        [searchTerm]
+    );
     useEffect(
         () => {
             console.log("useEffect fired")
@@ -81,20 +107,38 @@ const Products = (props) => {
         },
         []
     );
+    const searchValue = async (value) => {
+        setSearchTerm(value);
+    };
     const buildCard = (product) => {
         return (
             <Grid item xs={12} sm={6} md={4} lg={3} xl={2} key={product.id}>
                 <Card className={classes.card} variant='outlined'>
                     <CardActionArea>
-                        <CardContent>
-                            <Typography className={classes.titleHead} gutterBottom variant='h6' component='h2'>
-                                {product.name}
-                            </Typography>
-                        </CardContent>
+                        <Link to={`/clothes/${product.id}`}>
+                            <CardMedia
+                                className={classes.media}
+                                component='img'
+                                image={noImage}
+                                title='product image'
+                            />
+
+                            <CardContent>
+                                <Typography className={classes.titleHead} gutterBottom variant='h6' component='h2'>
+                                    {product.name}
+                                </Typography>
+                                <Typography variant='body2' color='textSecondary' component='p'>
+                                    {product.price ?"Price: " +product.price: 'Price Not available'}
+                                </Typography>
+                                <Typography variant='body2' color='textSecondary' component='p'>
+                                    {product.gender ? "Gender: "+product.gender:""}
+                                </Typography>
+                            </CardContent>
+                        </Link>
                     </CardActionArea>
                 </Card>
             </Grid>
-        );
+        )
     };
     if (loading) {
         return (
@@ -103,13 +147,24 @@ const Products = (props) => {
             </div>
         );
     } else if (!error) {
+        if (searchTerm) {
+            card =
+                searchData && searchData.length > 0?
+                <Grid container className={classes.grid} spacing={5}> { searchData.map((product) => {
+                        return buildCard(product._source);
+                    }) } </Grid>:  <div>No data available</div>;
+        } else {
         card =
             productsData ?
                 <Grid container className={classes.grid} spacing={5}> {productsData.map((product) => {
                     return buildCard(product);
                 })}  </Grid> : <div>No data available</div>;
+            }
         return (
             <div>
+                 <Search searchValue={searchValue} label="Search Products" />
+                <br />
+                <br />
                 {card}
             </div>
         );
