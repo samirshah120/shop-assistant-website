@@ -128,3 +128,41 @@ dd {
 	display: inline;
 	margin-left: 5px;
 }
+
+.navigation {
+	background: #282c34;
+}
+
+.navigation ul {
+	list-style-type: none;
+	margin: 0;
+	padding: 0;
+}
+
+.navigation a:link,
+.navigation a:visited {
+	color: white;
+	text-decoration: none;
+}
+
+.active {
+	font-weight: bold;
+	color: red !important;
+}
+
+.error {
+	font-weight: bold;
+	color: red !important;
+}
+.forgotPassword {
+	background: none !important;
+	border: none !important;
+	text-decoration: underline;
+	margin-left: 5px;
+	color: #069;
+}
+
+.forgotPassword:hover {
+	text-decoration: none;
+	color: red;
+}
