@@ -20,11 +20,25 @@ router.get('/search', async (req, res) => {
 		// await elasticSearch.ping()
 		let body = {
 			query: {
-			  match: {
-				  name: req.query.c
+				match_phrase_prefix: {
+				name: req.query.c,
+
 			  }
 			}
 		  }
+		// let body = {
+		// 	"query": {
+		// 		"regexp": {
+		// 		  name: {
+		// 			"value":  req.query.c+"[-._:A-Za-z0-9]*",
+		// 			"flags": "ALL",
+		// 			"case_insensitive": true,
+		// 			"max_determinized_states": 10000,
+		// 			"rewrite": "constant_score"
+		// 		  }
+		// 		}
+		// }
+	// }
         let productsList = await productsData.searchClothesProduct(body, res);
 	} catch (e) {
 		res.status(400).json({error : e});
