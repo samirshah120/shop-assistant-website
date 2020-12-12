@@ -14,6 +14,23 @@ Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
 The page will reload if you make edits.\
 You will also see any lint errors in the console.
 
+**Note: Before running npm start on backend folder Install elasticsearch service and imagemagick**
+
+## On MAC OS
+### `Download Elasticsearch `
+## SET Environment variables
+export ES_HOME=<path to downloaded folder>/elasticsearch-7.10.0
+export JAVA_HOME=/Library/Java/JavaVirtualMachines/jdk1.8.0_261.jdk/Contents/Home
+export PATH=$ES_HOME/bin:$JAVA_HOME/bin:$PATH
+
+### `Execute/run Elasticsearch`
+elasticsearch
+
+
+### `Download Imagemagick `
+## On MAC OS
+brew update && brew install imagemagick
+
 ### `npm test`
 
 Launches the test runner in the interactive watch mode.\

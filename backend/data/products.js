@@ -70,7 +70,12 @@ async addSearchClothesProduct(productList) {
   
 },
 async getProductById(id) {
-    id = ObjectId(id)
+  if (!id) throw 'You must provide an id to search for';
+  if(typeof id !== 'string' && typeof id !== 'object') throw 'id must be a string or object';
+
+  if(typeof id === 'string'){
+   id = ObjectId.createFromHexString(id);
+  }
     const productsCollection = await products();
     const product = await productsCollection.findOne({_id: id});
     return product

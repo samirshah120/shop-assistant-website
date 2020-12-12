@@ -4,6 +4,7 @@ const data = require('../data');
 const productsData = data.products;
 const elasticSearch = require("../data/elasticSearch");
 router.get('/', async (req, res) => {
+	console.log("hiii")
 	await elasticSearch.ping(res)
 	try {
 		let sort = req.query.sortByPrice;
@@ -18,7 +19,7 @@ router.get('/', async (req, res) => {
 		res.sendStatus(400).json({error : e});
 	}
 });
-router.get('/:id', async (req, res) => {
+router.get('productDetails/:id', async (req, res) => {
 	try {
 		let product = await productsData.getProductById(req.params.id);
 		if(product === null || product === undefined)
@@ -54,7 +55,8 @@ router.get('/search', async (req, res) => {
 		// 		}
 		// }
 	// }
-        let productsList = await productsData.searchClothesProduct(body, res);
+		let productsList = await productsData.searchClothesProduct(body, res);
+		res.json(productsList);
 	} catch (e) {
 		res.status(400).json({error : e});
 	}
