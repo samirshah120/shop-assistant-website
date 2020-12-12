@@ -4,13 +4,37 @@ const products = mongoCollections.products;
 const { ObjectId } = require("mongodb").ObjectID;
 const elasticSearch = require("./elasticSearch");
 let exportedMethods = {
-async getAllproducts() {
-    const productsCollection = await products();
-    const allproductsList = await productsCollection.find({}).toArray();
-    if (!allproductsList) throw 'No products in system!';
-    const clothesList = await productsCollection.find( { category: 'clothes'} ).toArray();
-    await this.addSearchClothesProduct(clothesList);
-    return allproductsList
+async getAllproducts(sort,category) {
+  const productsCollection = await products();
+  let allproductsList;
+  if(sort === 'asc'){
+    if(category === undefined){
+      allproductsList = await productsCollection.find({}).sort({price:1}).toArray();
+    }
+    else{
+      allproductsList = await productsCollection.find({category:category}).sort({price:1}).toArray();
+    }
+  }
+  else if(sort === 'desc'){
+    if(category === undefined){
+      allproductsList = await productsCollection.find({}).sort({price:-1}).toArray();
+    }
+    else{
+      allproductsList = await productsCollection.find({category:category}).sort({price:-1}).toArray();
+    }
+  }
+  else{
+    if(category === undefined){
+      allproductsList = await productsCollection.find({}).toArray();
+    }
+    else{
+      allproductsList = await productsCollection.find({category:category}).toArray();
+    }
+  }
+  if (!allproductsList) throw 'No products in system!';
+  const clothesList = await productsCollection.find( { category: category} ).toArray();
+  await this.addSearchClothesProduct(clothesList);
+  return allproductsList
   },
 async addProduct(newProduct) {
     const productsCollection = await products();
