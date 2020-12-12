@@ -147,7 +147,14 @@ dd {
 
 .active {
 	font-weight: bold;
-	color: red !important;
+  color: red !important;
+  padding: 3px;
+  margin: 5px;
+}
+.notactive{
+  color: black !important;
+  padding: 3px;
+  margin: 5px;
 }
 
 .error {
@@ -165,4 +172,19 @@ dd {
 .forgotPassword:hover {
 	text-decoration: none;
 	color: red;
+}
+
+.logoutbutton {
+  font-size: .8em;
+  color: black !important;
+  font-family: 'Oswald', sans-serif;
+	position: relative;
+  right: -18px;
+  bottom: -4px;
+  overflow: hidden;
+  letter-spacing: 3px;
+  opacity: 1;
+  transition: opacity .45s;
+  -webkit-transition: opacity .35s;
+  
 }
