@@ -6,12 +6,27 @@ const elasticSearch = require("../data/elasticSearch");
 router.get('/', async (req, res) => {
 	await elasticSearch.ping(res)
 	try {
-        let productsList = await productsData.getAllproducts();
-        res.header("Access-Control-Allow-Origin", "*");
-		res.json(productsList);
+		let sort = req.query.sortByPrice;
+		let category = req.query.category;
+		let productsList = await productsData.getAllproducts(sort,category);
+		res.header("Access-Control-Allow-Origin", "*");
+		if(productsList === null || productsList === undefined)
+			res.status(404).json({ error: 'product not found' })
+		else
+			res.json(productsList);
 	} catch (e) {
-		console.log(e);
-		//res.sendStatus(400).json({error : e});
+		res.sendStatus(400).json({error : e});
+	}
+});
+router.get('/:id', async (req, res) => {
+	try {
+		let product = await productsData.getProductById(req.params.id);
+		if(product === null || product === undefined)
+			res.status(404).json({ error: 'product not found' })
+		else
+			res.json(product);
+	} catch (e) {
+		res.status(404).json({ error: 'product not found' });
 	}
 });
 router.get('/search', async (req, res) => {
