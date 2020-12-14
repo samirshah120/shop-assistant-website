@@ -36,7 +36,9 @@ const useStyles = makeStyles({
     },
     horizontal: {
         display: 'flex',
-        justifyContent: 'space-around'
+        justifyContent: 'center',
+        paddingStart: '200px',
+        paddingEnd: '200px',
     },
     active: {
         color: 'blue',
@@ -49,6 +51,8 @@ const Products = (props) => {
     const [searchData, setSearchData] = useState(undefined);
     const [productsData, setProductsData] = useState(undefined);
     const [searchTerm, setSearchTerm] = useState('');
+    const [pageTitle, setPageTitle] = useState('');
+    const [sortValue, setSortValue] = useState('asc');
     const [pageNum, setPagenum] = useState(0);
     const [pageCount, setPageCount] = useState(0);
     const [error, setError] = useState(undefined);
@@ -58,28 +62,31 @@ const Products = (props) => {
     let publickey = process.env.REACT_APP_PUBLIC_KEY;
     let privatekey = process.env.REACT_APP_PRIVATE_KEY;
     const options = {
-        headers: {"Access-Control-Allow-Origin": "*"}
-       };
-       useEffect(
+        headers: { "Access-Control-Allow-Origin": "*" }
+    };
+    useEffect(
         () => {
-            
+
             console.log('search useEffect fired');
             async function fetchData() {
                 let url = '';
                 if (props.match.url == '/products/clothes') {
-                url = "http://127.0.0.1:5000/products/search?c="+ searchTerm;
+                    url = "http://127.0.0.1:5000/products/search?c=" + searchTerm;
+                    setPageTitle('Clothes')
                 }
-                else if(props.match.url == '/products/electronics'){
-                    url = "http://127.0.0.1:5000/products/search?e="+ searchTerm;    
+                else if (props.match.url == '/products/electronics') {
+                    url = "http://127.0.0.1:5000/products/search?e=" + searchTerm;
+                    setPageTitle('Electronics')
                 }
-                else if(props.match.url == '/products/groceries'){
-                    url = "http://127.0.0.1:5000/products/search?g="+ searchTerm;    
+                else if (props.match.url == '/products/groceries') {
+                    url = "http://127.0.0.1:5000/products/search?g=" + searchTerm;
+                    setPageTitle('Groceries')
                 }
                 try {
                     console.log(`in fetch searchTerm: ${searchTerm}`);
                     const { data } = await axios.get(url);
                     console.log(url + '&c=' + searchTerm)
-                    console.log("serachdata: "+JSON.stringify(data));
+                    console.log("serachdata: " + JSON.stringify(data));
                     setSearchData(data);
                     setLoading(false);
                 } catch (e) {
@@ -99,21 +106,24 @@ const Products = (props) => {
             console.log("useEffect fired")
             async function fetchData() {
                 // const url = 'http://127.0.0.1:5000/products';
-          
+
                 let url = '';
                 if (props.match.url == '/products/clothes') {
-                url = "http://127.0.0.1:5000/products?category=clothes";
+                    url = "http://127.0.0.1:5000/products?category=clothes&sortByPrice=" + sortValue;
+                    setPageTitle('Clothes')
                 }
-                else if(props.match.url == '/products/electronics'){
-                    url = "http://127.0.0.1:5000/products?category=electronics";    
+                else if (props.match.url == '/products/electronics') {
+                    url = "http://127.0.0.1:5000/products?category=electronics&sortByPrice=" + sortValue;
+                    setPageTitle('Electronics')
                 }
-                else if(props.match.url == '/products/groceries'){
-                    url = "http://127.0.0.1:5000/products?category=groceries";    
+                else if (props.match.url == '/products/groceries') {
+                    url = "http://127.0.0.1:5000/products?category=groceries&sortByPrice=" + sortValue;
+                    setPageTitle('Groceries')
                 }
                 console.log(url)
                 const reg = new RegExp('^\\d+$');
                 try {
-                    const { data } = await axios.get(url,options);
+                    const { data } = await axios.get(url, options);
                     setProductsData(data);
                     setError(undefined);
                     setLoading(false);
@@ -126,10 +136,13 @@ const Products = (props) => {
             }
             fetchData();
         },
-        []
+        [sortValue]
     );
     const searchValue = async (value) => {
         setSearchTerm(value);
+    };
+    const sortBy = async (event) => {
+        setSortValue(event.target.value);
     };
     const buildCard = (product) => {
         return (
@@ -149,10 +162,10 @@ const Products = (props) => {
                                     {product.name}
                                 </Typography>
                                 <Typography variant='body2' color='textSecondary' component='p'>
-                                    {product.price ?"Price: " +product.price: 'Price Not available'}
+                                    {product.price ? "Price: " + product.price : 'Price Not available'}
                                 </Typography>
                                 <Typography variant='body2' color='textSecondary' component='p'>
-                                    {product.gender ? "Gender: "+product.gender:""}
+                                    {product.gender ? "Gender: " + product.gender : ""}
                                 </Typography>
                             </CardContent>
                         </Link>
@@ -170,20 +183,32 @@ const Products = (props) => {
     } else if (!error) {
         if (searchTerm) {
             card =
-                searchData && searchData.length > 0?
-                <Grid container className={classes.grid} spacing={5}> { searchData.map((product) => {
+                searchData && searchData.length > 0 ?
+                    <Grid container className={classes.grid} spacing={5}> {searchData.map((product) => {
                         return buildCard(product._source);
-                    }) } </Grid>:  <div>No data available</div>;
+                    })} </Grid> : <div>No data available</div>;
         } else {
-        card =
-            productsData ?
-                <Grid container className={classes.grid} spacing={5}> {productsData.map((product) => {
-                    return buildCard(product);
-                })}  </Grid> : <div>No data available</div>;
-            }
+            card =
+                productsData ?
+                    <Grid container className={classes.grid} spacing={5}> {productsData.map((product) => {
+                        return buildCard(product);
+                    })}  </Grid> : <div>No data available</div>;
+        }
         return (
             <div>
-                 <Search searchValue={searchValue} label="Search Products" />
+                <br />
+                <h1 >{pageTitle}</h1>
+                <br />
+                <div className={classes.horizontal}>
+                    <Search searchValue={searchValue} label="Search Products" />
+                    <div>
+                        Sort by:
+                        <select onChange={sortBy}>
+                            <option value="asc">Price: Low to High</option>
+                            <option value="desc">Price: High to Low</option>
+                        </select>
+                    </div>
+                </div>
                 <br />
                 <br />
                 {card}
