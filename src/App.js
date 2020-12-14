@@ -10,6 +10,7 @@ import SignUp from './components/SignUp';
 import { AuthProvider } from './firebase/Auth';
 import PrivateRoute from './components/PrivateRoute';
 import Products from './components/Products';
+import ProductDetails from './components/ProductDetails';
 
 
 const App = () => {
@@ -30,6 +31,7 @@ const App = () => {
                 <PrivateRoute exact path='/products/clothes' component={Products} />
                 <PrivateRoute exact path='/products/electronics' component={Products} />
                 <PrivateRoute exact path='/products/groceries' component={Products} />
+                <PrivateRoute exact path='/productDetails/:id' component={ProductDetails} />
             </Router>
         </AuthProvider>
     );

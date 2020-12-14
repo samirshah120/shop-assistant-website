@@ -49,27 +49,28 @@ indexExists: function(indexName){
         console.log(err.message);
     });
 },
-async addClothes(clothes){
+async addProducts(products, index){
 
 var bulk = [];
-clothes.map((cloth) =>{
+products.map((product) =>{
    bulk.push({index:{
-                 _index:"clothes_index"
+                 _index:index
              }
          })
-  bulk.push( cloth )
+  bulk.push( product )
 })
+
 //perform bulk indexing of the data passed
 await client.bulk({body:bulk}, function( err, response  ){
          if( err ){
              console.log("Failed Bulk operation".red, err)
          } else {
-             console.log("Successfully imported %s".green, clothes.length);
+             console.log("Successfully imported %s".green, products.length);
          }
 });
 },
-async searchClothes(body, res){
-    await client.search({index:'clothes_index',  body:body
+async searchClothes(body, res, index){
+    await client.search({index:index,  body:body
 })
     .then(results => {
         const list = results.hits.hits;

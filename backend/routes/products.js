@@ -4,7 +4,6 @@ const data = require('../data');
 const productsData = data.products;
 const elasticSearch = require("../data/elasticSearch");
 router.get('/', async (req, res) => {
-	console.log("hiii")
 	await elasticSearch.ping(res)
 	try {
 		let sort = req.query.sortByPrice;
@@ -19,7 +18,7 @@ router.get('/', async (req, res) => {
 		res.sendStatus(400).json({error : e});
 	}
 });
-router.get('productDetails/:id', async (req, res) => {
+router.get('/productDetails/:id', async (req, res) => {
 	try {
 		let product = await productsData.getProductById(req.params.id);
 		if(product === null || product === undefined)
@@ -31,32 +30,32 @@ router.get('productDetails/:id', async (req, res) => {
 	}
 });
 router.get('/search', async (req, res) => {
-
+	let query = null;
+	let index = null;
+	if(req.query.c){
+		query = req.query.c;
+		index = 'clothes_index';
+	}
+	else if(req.query.e){
+		query = req.query.e;
+		index = 'electronics_index';
+	}
+	else if(req.query.g){
+		query = req.query.g;
+		index = 'groceries_index';
+	}
 	try {
 		// await elasticSearch.ping()
 		let body = {
 			query: {
 				match_phrase_prefix: {
-				name: req.query.c,
+				name: query,
 
 			  }
 			}
 		  }
-		// let body = {
-		// 	"query": {
-		// 		"regexp": {
-		// 		  name: {
-		// 			"value":  req.query.c+"[-._:A-Za-z0-9]*",
-		// 			"flags": "ALL",
-		// 			"case_insensitive": true,
-		// 			"max_determinized_states": 10000,
-		// 			"rewrite": "constant_score"
-		// 		  }
-		// 		}
-		// }
-	// }
-		let productsList = await productsData.searchClothesProduct(body, res);
-		res.json(productsList);
+	let productsList  = await productsData.searchProduct(body, res, index);
+	res.json(productsList);
 	} catch (e) {
 		res.status(400).json({error : e});
 	}

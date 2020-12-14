@@ -62,12 +62,22 @@ const Products = (props) => {
        };
        useEffect(
         () => {
+            
             console.log('search useEffect fired');
             async function fetchData() {
-                const url = "http://127.0.0.1:5000/products/search";
+                let url = '';
+                if (props.match.url == '/products/clothes') {
+                url = "http://127.0.0.1:5000/products/search?c="+ searchTerm;
+                }
+                else if(props.match.url == '/products/electronics'){
+                    url = "http://127.0.0.1:5000/products/search?e="+ searchTerm;    
+                }
+                else if(props.match.url == '/products/groceries'){
+                    url = "http://127.0.0.1:5000/products/search?g="+ searchTerm;    
+                }
                 try {
                     console.log(`in fetch searchTerm: ${searchTerm}`);
-                    const { data } = await axios.get(url + '?c=' + searchTerm);
+                    const { data } = await axios.get(url);
                     console.log(url + '&c=' + searchTerm)
                     console.log("serachdata: "+JSON.stringify(data));
                     setSearchData(data);
@@ -88,11 +98,22 @@ const Products = (props) => {
         () => {
             console.log("useEffect fired")
             async function fetchData() {
-                const url = 'http://127.0.0.1:5000/products';
+                // const url = 'http://127.0.0.1:5000/products';
+          
+                let url = '';
+                if (props.match.url == '/products/clothes') {
+                url = "http://127.0.0.1:5000/products?category=clothes";
+                }
+                else if(props.match.url == '/products/electronics'){
+                    url = "http://127.0.0.1:5000/products?category=electronics";    
+                }
+                else if(props.match.url == '/products/groceries'){
+                    url = "http://127.0.0.1:5000/products?category=groceries";    
+                }
                 console.log(url)
                 const reg = new RegExp('^\\d+$');
                 try {
-                    const { data } = await axios.get(url+'?category=clothes',options);
+                    const { data } = await axios.get(url,options);
                     setProductsData(data);
                     setError(undefined);
                     setLoading(false);
@@ -115,7 +136,7 @@ const Products = (props) => {
             <Grid item xs={12} sm={6} md={4} lg={3} xl={2} key={product.id}>
                 <Card className={classes.card} variant='outlined'>
                     <CardActionArea>
-                        <Link to={`/clothes/${product.id}`}>
+                        <Link to={`/productDetails/${product._id}`}>
                             <CardMedia
                                 className={classes.media}
                                 component='img'

@@ -32,8 +32,16 @@ async getAllproducts(sort,category) {
     }
   }
   if (!allproductsList) throw 'No products in system!';
-  const clothesList = await productsCollection.find( { category: category} ).toArray();
-  await this.addSearchClothesProduct(clothesList);
+  
+  if(category === 'clothes'){
+  await this.addSearchProduct(allproductsList, 'clothes_index');
+  }
+  else if(category === 'electronics'){
+    await this.addSearchProduct(allproductsList, 'electronics_index');
+  }
+  else if(category === 'groceries'){
+    await this.addSearchProduct(allproductsList, 'groceries_index');
+  }
   return allproductsList
   },
 async addProduct(newProduct) {
@@ -43,15 +51,15 @@ async addProduct(newProduct) {
     return await this.getProductById(newInsertInformation.insertedId);
 },
 
-async searchClothesProduct(searchBody, res) {
-  let list = await elasticSearch.searchClothes(searchBody, res);
+async searchProduct(searchBody, res, index) {
+  let list = await elasticSearch.searchClothes(searchBody, res, index);
   console.log("list: "+JSON.stringify(list));
   return list;
   
 },
-async addSearchClothesProduct(productList) {
+async addSearchProduct(productList, index) {
   await elasticSearch.deleteAll();
-  let clothesList = []
+  let list = []
   productList.map((product) => {
     let clothes = {
       id: product._id.toString(),
@@ -64,9 +72,9 @@ async addSearchClothesProduct(productList) {
       details: product.details,
       url: product.url
     }
-    clothesList.push(clothes);
+    list.push(clothes);
   });
-  elasticSearch.addClothes(clothesList);
+  elasticSearch.addProducts(list, index);
   
 },
 async getProductById(id) {
