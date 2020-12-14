@@ -7,6 +7,7 @@ function Landing() {
         <div>
             <h1 >Welcome to Shop Assistant</h1>
         </div>
+
     );
 }
 
