@@ -1,4 +1,6 @@
 import firebase from 'firebase/app';
+import Cookie from 'js-cookie';
+
 async function doCreateUserWithEmailAndPassword(email, password, displayName) {
     await firebase.auth().createUserWithEmailAndPassword(email, password);
     firebase.auth().currentUser.updateProfile({ displayName: displayName });

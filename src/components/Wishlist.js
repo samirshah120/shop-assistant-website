@@ -1,4 +1,4 @@
-import React, { useContext, useState, useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { Link } from 'react-router-dom';
 import ReactPaginate from 'react-paginate';
@@ -7,11 +7,6 @@ import md5 from 'blueimp-md5';
 import '../App.css';
 import noImage from '../img/download.jpeg';
 import Search from './Search';
-import { AuthContext } from '../firebase/Auth';
-import firebase from 'firebase/app'
-import 'firebase/auth';
-import Cookie from 'js-cookie';
-
 const useStyles = makeStyles({
     card: {
         maxWidth: 250,
@@ -48,13 +43,10 @@ const useStyles = makeStyles({
     }
 });
 const Products = (props) => {
-    const { currentUser } = useContext(AuthContext);
     const regex = /(<([^>]+)>)/gi;
     const classes = useStyles();
     const [loading, setLoading] = useState(true);
-    //const { currentUser } = useContext(AuthContext);
     const [searchData, setSearchData] = useState(undefined);
-    const [userInfo, setUserInfo] = useState(undefined);
     const [productsData, setProductsData] = useState(undefined);
     const [searchTerm, setSearchTerm] = useState('');
     const [pageNum, setPagenum] = useState(0);
@@ -68,24 +60,9 @@ const Products = (props) => {
     const options = {
         headers: {"Access-Control-Allow-Origin": "*"}
        };
-      
-       firebase.auth().onAuthStateChanged((user) => {
-        
-        if (user) {
-            setUserInfo(user.uid);
-            // User logged in already or has just logged in.
-            console.log("User has logged in and userid is")
-            console.log(user.uid);
-        } else {
-            // User not logged in or has just logged out.
-            console.log("User not logged in")
-        }
-    });
-
        useEffect(
         () => {
             console.log('search useEffect fired');
-            
             async function fetchData() {
                 const url = "http://127.0.0.1:5000/products/search";
                 try {
@@ -111,8 +88,6 @@ const Products = (props) => {
         () => {
             console.log("useEffect fired")
             async function fetchData() {
-                
-            
                 const url = 'http://127.0.0.1:5000/products';
                 console.log(url)
                 const reg = new RegExp('^\\d+$');
@@ -132,21 +107,15 @@ const Products = (props) => {
         },
         []
     );
-
     const searchValue = async (value) => {
         setSearchTerm(value);
     };
-    
-
-      
-
     const buildCard = (product) => {
         return (
-            
-            <Grid item xs={12} sm={6} md={4} lg={3} xl={2} key={product._id}>
+            <Grid item xs={12} sm={6} md={4} lg={3} xl={2} key={product.id}>
                 <Card className={classes.card} variant='outlined'>
                     <CardActionArea>
-                        <Link to={`/products/item/${product._id}`}>
+                        <Link to={`/clothes/${product.id}`}>
                             <CardMedia
                                 className={classes.media}
                                 component='img'
@@ -164,13 +133,10 @@ const Products = (props) => {
                                 <Typography variant='body2' color='textSecondary' component='p'>
                                     {product.gender ? "Gender: "+product.gender:""}
                                 </Typography>
-                                
                             </CardContent>
                         </Link>
                     </CardActionArea>
-                   
                 </Card>
-                
             </Grid>
         )
     };
