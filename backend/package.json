@@ -16,6 +16,9 @@
     "elasticsearch": "^16.7.2",
     "express": "^4.17.1",
     "mongodb": "^3.6.3",
-    "mongoose": "^5.10.18"
+    "mongoose": "^5.10.18",
+    "react-redux": "^7.2.2",
+    "redux": "^4.0.5",
+    "redux-thunk": "^2.3.0"
   }
 }
