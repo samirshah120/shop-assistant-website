@@ -188,3 +188,131 @@ dd {
   -webkit-transition: opacity .35s;
   
 }
+
+/* Product Details */
+.details {
+	display: flex;
+	justify-content: space-between;
+	align-items: flex-start;
+	flex-wrap: wrap;
+	padding: 1rem;
+  }
+  .details-image {
+	flex: 2 1 60rem;
+  }
+  .details-image img {
+	max-width: 60rem;
+	width: 100%;
+  }
+  .details-info {
+	flex: 1 1 30rem;
+  }
+  .details-action {
+	flex: 1 1 30rem;
+  }
+  
+  .details-info ul,
+  .details-action ul {
+	list-style-type: none;
+	padding: 0;
+  }
+  .details-info li,
+  .details-action li {
+	margin-bottom: 1rem;
+  }
+  .back-to-result {
+	padding: 1rem;
+  }
+  .details-action {
+	border: 0.1rem #808080 solid;
+	border-radius: 0.5rem;
+	background-color: #f8f8f8;
+	padding: 1rem;
+  }
+  .details-action ul li:last-child {
+	display: flex;
+	flex-direction: column;
+  }
+  .button {
+	padding: 1rem;
+	border: 0.1rem #808080 solid;
+	border-radius: 0.5rem;
+	cursor: pointer;
+  }
+  .button:hover {
+	border: 0.1rem #404040 solid;
+  }
+  .button.primary {
+	background-color: #f0c040;
+  }
+  .button.secondary {
+	background-color: #f0f0f0;
+  }
+  .text-center {
+	text-align: center;
+  }
+
+  /* Place Order */
+
+.placeorder {
+	display: flex;
+	flex-wrap: wrap;
+	padding: 1rem;
+	justify-content: space-between;
+  }
+  .placeorder-info {
+	flex: 3 1 60rem;
+  }
+  .placeorder-action {
+	flex: 1 1 20rem;
+	border: 0.1rem #c0c0c0 solid;
+	border-radius: 0.5rem;
+	background-color: #fcfcfc;
+	padding: 1rem;
+  }
+  .placeorder-info > div {
+	border: 0.1rem #c0c0c0 solid;
+	border-radius: 0.5rem;
+	background-color: #fcfcfc;
+	padding: 1rem;
+	margin: 1rem;
+  }
+  .placeorder-info > div:first-child {
+	margin-top: 0;
+  }
+  .placeorder-action > ul {
+	padding: 0;
+	list-style-type: none;
+  }
+  .placeorder-action > ul > li {
+	display: flex;
+	justify-content: space-between;
+	margin-bottom: 1rem;
+  }
+  .placeorder-action > ul > li:last-child {
+	font-size: 2rem;
+	font-weight: bold;
+	color: #c04000;
+  }
+  .placeorder-actions-payment > div {
+	width: 100%;
+  }
+
+  /* Checkout Steps */
+
+.checkout-steps {
+	display: flex;
+	justify-content: space-between;
+	width: 40rem;
+	margin: 1rem auto;
+  }
+  .checkout-steps > div {
+	border-top: 0.3rem #c0c0c0 solid;
+	color: #c0c0c0;
+	flex: 1 1;
+	padding-top: 1rem;
+  }
+  .checkout-steps > div.active {
+	border-top: 0.3rem #f08000 solid;
+	color: #f08000;
+  }

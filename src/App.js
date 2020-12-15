@@ -11,6 +11,8 @@ import { AuthProvider } from './firebase/Auth';
 import PrivateRoute from './components/PrivateRoute';
 import Products from './components/Products';
 import ProductDetails from './components/ProductDetails';
+import CartScreen from './components/CartScreen';
+import ShippingScreen from './components/ShippingScreen';
 
 
 const App = () => {
@@ -31,7 +33,9 @@ const App = () => {
                 <PrivateRoute exact path='/products/clothes' component={Products} />
                 <PrivateRoute exact path='/products/electronics' component={Products} />
                 <PrivateRoute exact path='/products/groceries' component={Products} />
+                <PrivateRoute path="/shipping" component={ShippingScreen} />
                 <PrivateRoute exact path='/productDetails/:id' component={ProductDetails} />
+                <PrivateRoute path="/cart/:id?" component={CartScreen} />
             </Router>
         </AuthProvider>
     );
