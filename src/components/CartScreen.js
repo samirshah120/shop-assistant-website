@@ -2,7 +2,6 @@ import React, { useEffect,useState } from 'react';
 import { addToCart, removeFromCart } from '../actions/cartActions';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
-import image from '../img/jeans_image.png';
 import { AuthContext } from '../firebase/Auth';
 import firebase from 'firebase/app'
 import 'firebase/auth';
@@ -38,12 +37,21 @@ function CartScreen(props) {
         console.log(user.uid);
     } else {
         // User not logged in or has just logged out.
+
         console.log("User not logged in")
+        props.history.push("/signin");
     }
 });
 
+
   const checkoutHandler = () => {
-    props.history.push("/shipping");
+    if(userInfo)
+    {
+      props.history.push("/shipping");
+    }
+    else
+    props.history.push("/signin");
+    
   }
 
   return <div className="cart">
@@ -66,17 +74,25 @@ function CartScreen(props) {
             cartItems.map(item =>
               <li>
                 <div className="cart-image">
-                  <img src={image} alt="product" />
+                  <img src = {process.env.PUBLIC_URL + `/img/dst/${item.url}`} alt="product" />
                 </div>
                 <div className="cart-name">
                   <div>
-                    <Link to={"/product/" + item.product}>
+                    <Link to={"/productDetails/" + item.product}>
                       {item.name}
                     </Link>
 
                 </div>
                   <div>
-                        Quantity: {qty}
+                        Qty:
+                        <select value={item.qty} onChange={(e) => dispatch(addToCart(item.product, e.target.value))}>
+                      
+                        <option value={1}>1</option>
+                        <option value={2}>2</option>
+                        <option value={3}>3</option>
+                    
+                    </select>
+                        
                       
                         <button type="button" className="button" onClick={() => removeFromCartHandler(item.product)} >
                           Delete
@@ -94,9 +110,9 @@ function CartScreen(props) {
     </div>
     <div className="cart-action">
       <h3>
-        Subtotal ( {cartItems.reduce((a, c) => a + c.qty, 0)} items)
+        Subtotal ( {cartItems.reduce((a, c) => a + parseInt(c.qty), 0)} items)
         :
-         $ {cartItems.reduce((a, c) => a + c.price * c.qty, 0)}
+         $ {cartItems.reduce((a, c) => a + c.price * parseInt(c.qty), 0)}
       </h3>
       <button onClick={checkoutHandler} className="button primary full-width" disabled={cartItems.length === 0}>
         Proceed to Checkout

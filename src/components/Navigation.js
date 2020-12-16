@@ -46,6 +46,7 @@ const NavigationAuth = () => {
                 <Nav className="mr-auto">
                     <NavLink exact to="/home" activeClassName="active" className="notactive">Home</NavLink>
                     <NavLink exact to="/account" activeClassName="active" className="notactive">Account</NavLink>
+                    <NavLink exact to="/account" activeClassName="active" className="notactive">My Cart</NavLink>
                     {/* <NavLink exact to="/signup" activeClassName="active" className="notactive">Sign Up</NavLink>
                     <NavLink exact to="/signin" activeClassName="active" className="notactive">Sign In</NavLink> */}
                     <SignOutButton />

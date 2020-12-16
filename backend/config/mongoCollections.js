@@ -15,5 +15,6 @@ const getCollectionFn = collection => {
   };
 };
 module.exports = {
-  products: getCollectionFn("products")
+  products: getCollectionFn("products"),
+  order: getCollectionFn("order")
 };

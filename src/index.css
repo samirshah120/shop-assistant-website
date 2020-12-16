@@ -127,3 +127,22 @@ code {
   font-size: 2.5rem;
   text-align: right;
 } 
+
+/* forms */
+
+.form {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 20%;
+}
+.form-container {
+  display: flex;
+  flex-direction: column;
+  width: 32rem;
+  height: 20%;
+  padding: 2rem;
+  border: 0.1rem #c0c0c0 solid;
+  border-radius: 0.5rem;
+  list-style-type: none;
+}

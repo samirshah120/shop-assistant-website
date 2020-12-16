@@ -6,17 +6,18 @@ import {
 
 const createOrder = (order) => async (dispatch, getState) => {
   try {
+    console.log(order);
     dispatch({ type: ORDER_CREATE_REQUEST, payload: order });
-    const { userSignin: { userInfo } } = getState();
-    const { data: { data: newOrder } } = await Axios.post("/api/orders", order, {
+   // const { userSignin: { userInfo } } = getState();
+    const { data: { data: newOrder } } = await Axios.post("http://127.0.0.1:5000/order", order, {
       headers: {
-        Authorization: ' Bearer ' + userInfo.token
+        //: ' Bearer ' + userInfo.token
       }
     });
     dispatch({ type: ORDER_CREATE_SUCCESS, payload: newOrder });
   } catch (error) {
     dispatch({ type: ORDER_CREATE_FAIL, payload: error.message });
-  }
+  } 
 }
 
 const listMyOrders = () => async (dispatch, getState) => {
@@ -51,17 +52,15 @@ const listOrders = () => async (dispatch, getState) => {
 const detailsOrder = (orderId) => async (dispatch, getState) => {
   try {
     dispatch({ type: ORDER_DETAILS_REQUEST, payload: orderId });
-    const { userSignin: { userInfo } } = getState();
-    const { data } = await Axios.get("/api/orders/" + orderId, {
+    const { data } = await Axios.get("http://127.0.0.1:5000/order/" + orderId, {
       headers:
-        { Authorization: 'Bearer ' + userInfo.token }
+        { }
     });
     dispatch({ type: ORDER_DETAILS_SUCCESS, payload: data })
   } catch (error) {
     dispatch({ type: ORDER_DETAILS_FAIL, payload: error.message });
   }
 }
-
 const payOrder = (order, paymentResult) => async (dispatch, getState) => {
   try {
     dispatch({ type: ORDER_PAY_REQUEST, payload: paymentResult });
