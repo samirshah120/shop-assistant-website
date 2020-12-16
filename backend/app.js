@@ -14,8 +14,8 @@ app.use(function(req, res, next) {
   next();
 });
 configRoutes(app);
-let moveFrom = "../src/img/src_image";
-let moveTo = "../src/img/dst"
+let moveFrom = "../public/img/src";
+let moveTo = "../public/img/dst";
 //Image compress using ImageMagick
 fs.readdir(moveFrom, function (err, files) {
   if (err) {
