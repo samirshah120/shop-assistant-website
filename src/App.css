@@ -243,7 +243,7 @@ dd {
 	border: 0.1rem #404040 solid;
   }
   .button.primary {
-	background-color: #f0c040;
+	background-color: #80e1ff;
   }
   .button.secondary {
 	background-color: #f0f0f0;
@@ -264,7 +264,7 @@ dd {
 	flex: 3 1 60rem;
   }
   .placeorder-action {
-	flex: 1 1 20rem;
+	
 	border: 0.1rem #c0c0c0 solid;
 	border-radius: 0.5rem;
 	background-color: #fcfcfc;
@@ -292,7 +292,7 @@ dd {
   .placeorder-action > ul > li:last-child {
 	font-size: 2rem;
 	font-weight: bold;
-	color: #c04000;
+	color: #0083c0;
   }
   .placeorder-actions-payment > div {
 	width: 100%;

@@ -13,6 +13,9 @@ import Products from './components/Products';
 import ProductDetails from './components/ProductDetails';
 import CartScreen from './components/CartScreen';
 import ShippingScreen from './components/ShippingScreen';
+import PaymentScreen from './components/PaymentScreen';
+import PlaceOrderScreen from './components/PlaceOrderScreen';
+import OrderScreen from './components/OrderScreen';
 
 
 const App = () => {
@@ -31,8 +34,11 @@ const App = () => {
                 <Route path="/signin" component={SignIn} />
                 <Route path="/signup" component={SignUp} />
                 <PrivateRoute exact path='/products/clothes' component={Products} />
+                <PrivateRoute path="/order/:id" component={OrderScreen} />
                 <PrivateRoute exact path='/products/electronics' component={Products} />
                 <PrivateRoute exact path='/products/groceries' component={Products} />
+                <PrivateRoute path="/placeorder" component={PlaceOrderScreen} />
+                <PrivateRoute path="/payment" component={PaymentScreen} />
                 <PrivateRoute path="/shipping" component={ShippingScreen} />
                 <PrivateRoute exact path='/productDetails/:id' component={ProductDetails} />
                 <PrivateRoute path="/cart/:id?" component={CartScreen} />

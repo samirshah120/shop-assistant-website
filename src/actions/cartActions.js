@@ -13,6 +13,12 @@ const addToCart = (productId, qty) => async (dispatch, getState) => {
         name: data.name,
         image: data.url,
         price: data.price,
+        category:data.category,
+        size:data.size,
+        gender:data.gender,
+        brand:data.brand,
+        details:data.details,
+        url:data.url,
         qty
       }
     });
