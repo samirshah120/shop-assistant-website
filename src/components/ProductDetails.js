@@ -166,7 +166,7 @@ function ProductDetails(props) {
                 <CardMedia
                     className={classes.media}
                     component='img'
-                    image={noImage}
+                    src = {process.env.PUBLIC_URL + `/img/dst/${productData.url}`}
                     title='show image'
                 />
 

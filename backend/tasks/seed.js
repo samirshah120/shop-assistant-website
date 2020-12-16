@@ -11,7 +11,7 @@ async function main() {
       "brand" : "shop and stop",
       "price" : 100,
       "details" : "Sold by Samir",
-      "url": "jeans.jpg"
+      "url": "jeans_male.png",
     };
     let pr2 = {
       "name": "t-shirt",
@@ -21,7 +21,7 @@ async function main() {
       "brand" : "shop and stop",
       "price" : 150,
       "details" : "Sold by Samir",
-      "url": "tshirt.jpg"
+      "url": "tshirt_1.jpg"
     };
     let pr3 = {
       "name": "cargo pant",
@@ -31,7 +31,7 @@ async function main() {
       "brand" : "shop and stop",
       "price" : 200,
       "details" : "Sold by Samir",
-      "url": "cargo-pant.jgp"
+      "url": "cargo_1.jpg"
     };
     let pr4 = {
       "name": "yoga pant",
@@ -41,7 +41,7 @@ async function main() {
       "brand" : "shop and stop",
       "price" : 250,
       "details" : "Sold by Samir",
-      "url": "yoga-pant.jgp"
+      "url": "track_2.jpg"
     };
     let pr5 = {
       "name": "jacket",
@@ -51,7 +51,7 @@ async function main() {
       "brand" : "shop and stop",
       "price" : 350,
       "details" : "Sold by Samir",
-      "url": "jacket.jgp"
+      "url": "jacket_2.jpg"
     };
     let pr6 = {
       "name": "t-shirt",
@@ -61,7 +61,7 @@ async function main() {
       "brand" : "shop and stop",
       "price" : 170,
       "details" : "Sold by Samir",
-      "url": "tshirt.jpg"
+      "url": "tshirt_2.jpg"
     };
     //grocery
     let pr7 = {
@@ -72,7 +72,7 @@ async function main() {
       "brand" : "shop and stop",
       "price" : 10,
       "details" : "Sold by Madhu",
-      "url": "milk.jgp"
+      "url": "milk_1.jpg"
     };
     let pr8 = {
       "name": "bread",
@@ -82,7 +82,7 @@ async function main() {
       "brand" : "shop and stop",
       "price" : 20,
       "details" : "Sold by Madhu",
-      "url": "bread.jgp"
+      "url": "bread_1.jpg"
     };
     let pr9 = {
       "name": "cheese",
@@ -92,7 +92,7 @@ async function main() {
       "brand" : "shop and stop",
       "price" : 30,
       "details" : "Sold by Madhu",
-      "url": "cheese.jgp"
+      "url": "Cheese_01.jpg"
     };
     let pr10 = {
       "name": "cereal",
@@ -102,7 +102,7 @@ async function main() {
       "brand" : "shop and stop",
       "price" : 40,
       "details" : "Sold by Madhu",
-      "url": "cereal.jgp"
+      "url": "cereal_1.jpeg"
     };
     let pr11 = {
       "name": "ice cream",
@@ -112,7 +112,7 @@ async function main() {
       "brand" : "shop and stop",
       "price" : 50,
       "details" : "Sold by Madhu",
-      "url": "ice-cream.jgp"
+      "url": "icecream_1.jpg"
     };
     let pr12 = {
       "name": "Refrigerator",
@@ -122,7 +122,7 @@ async function main() {
       "brand" : "shop and stop",
       "price" : 5000,
       "details" : "Sold by Rajit",
-      "url": "refrigerator.jgp"
+      "url": "refrigerator_1.jpg"
     };
     let pr13 = {
       "name": "TV",
@@ -132,7 +132,7 @@ async function main() {
       "brand" : "shop and stop",
       "price" : 4000,
       "details" : "Sold by Rajit",
-      "url": "tv.jgp"
+      "url": "tv_1.jpg"
     };
     let pr14 = {
       "name": "ps5",
@@ -142,7 +142,7 @@ async function main() {
       "brand" : "shop and stop",
       "price" : 3000,
       "details" : "Sold by Rajit",
-      "url": "ps5.jgp"
+      "url": "ps5_1.jpg"
     };
     let pr15 = {
       "name": "camera",
@@ -152,7 +152,7 @@ async function main() {
       "brand" : "shop and stop",
       "price" : 2000,
       "details" : "Sold by Rajit",
-      "url": "camera.jgp"
+      "url": "camera_1.jpeg"
     };
     let pr16 = {
       "name": "laptop",
@@ -162,7 +162,37 @@ async function main() {
       "brand" : "shop and stop",
       "price" : 1000,
       "details" : "Sold by Rajit",
-      "url": "laptop.jgp"
+      "url": "laptop_1.jpg"
+    };
+    let pr17 = {
+      "name": "iphone",
+      "category": "electronics",
+      "size" :null,
+      "gender":null,
+      "brand" : "shop and stop",
+      "price" : 1000,
+      "details" : "Sold by Rajit",
+      "url": "iphone.jpg"
+    };
+    let pr18 = {
+      "name": "tomato",
+      "category": "groceries",
+      "size" :null,
+      "gender":null,
+      "brand" : "shop and stop",
+      "price" : 30,
+      "details" : "Sold by Madhu",
+      "url": "tomato_1.jpg"
+    };
+    let pr19 = {
+      "name": "avocado",
+      "category": "groceries",
+      "size" :null,
+      "gender":null,
+      "brand" : "shop and stop",
+      "price" : 30,
+      "details" : "Sold by Madhu",
+      "url": "avocado_1.jpg"
     };
 
     var product1 = await productsData.addProduct(pr1);
@@ -180,8 +210,10 @@ async function main() {
     var product13 = await productsData.addProduct(pr13);
     var product14 = await productsData.addProduct(pr14);
     var product15 = await productsData.addProduct(pr15);
-    var product15 = await productsData.addProduct(pr16);
-
+    var product16 = await productsData.addProduct(pr16);
+    var product17 = await productsData.addProduct(pr17);
+    var product18 = await productsData.addProduct(pr18);
+    var product19 = await productsData.addProduct(pr19);
     await db.serverConfig.close();
 }
 main();
