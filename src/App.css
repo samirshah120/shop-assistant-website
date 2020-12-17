@@ -23,8 +23,8 @@ input {
 
 .App-header {
 	background-color: #1371DC;
-	height: 200px;
-	padding: 20px;
+	height: 150px;
+	padding: 0px;
 	color: #222;
 }
 
@@ -316,3 +316,12 @@ dd {
 	border-top: 0.3rem #f08000 solid;
 	color: #f08000;
   }
+.Shipform{
+	margin: 0 auto;
+	width: 210px;
+}
+.Shipform label{
+  display: inline-block;
+  text-align: right;
+  /* float: left; */
+} 

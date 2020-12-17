@@ -24,11 +24,10 @@ const App = () => {
             <Router>
                 <div className="App">
                     <header className="App-header">
-
                         <Navigation />
                     </header>
                 </div>
-                <Route exact path="/" component={Landing} />
+                <Route exact path="/" component={Home} />
                 <PrivateRoute path="/home" component={Home} />
                 <PrivateRoute path="/account" component={Account} />
                 <Route path="/signin" component={SignIn} />
