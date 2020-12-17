@@ -27,7 +27,7 @@ function ShippingScreen(props) {
             <label htmlFor="address">
               Address
           </label>
-            <input type="text" name="address" id="address" onChange={(e) => setAddress(e.target.value)}>
+            <input type="text" name="address" id="address" onChange={(e) => setAddress(e.target.value)} required>
             </input>
           </div>
           <br></br>
@@ -35,7 +35,7 @@ function ShippingScreen(props) {
             <label htmlFor="city">
               City
           </label>
-            <input type="text" name="city" id="city" onChange={(e) => setCity(e.target.value)}>
+            <input type="text" name="city" id="city" onChange={(e) => setCity(e.target.value)} required>
             </input>
           </div>
           <br></br>
@@ -43,15 +43,17 @@ function ShippingScreen(props) {
             <label htmlFor="postalCode">
               Postal Code
           </label>
-            <input type="text" name="postalCode" id="postalCode" onChange={(e) => setPostalCode(e.target.value)}>
+          <div>
+            <input type="number" min="0" max="99999" name="postalCode" id="postalCode" onChange={(e) => setPostalCode(e.target.value)} required>
             </input>
+          </div>
           </div>
           <br></br>
           <div>
             <label htmlFor="country">
               Country
           </label>
-            <input type="text" name="country" id="country" onChange={(e) => setCountry(e.target.value)}>
+            <input type="text" name="country" id="country" onChange={(e) => setCountry(e.target.value)} required>
             </input>
           </div>
           <br></br>

@@ -27,7 +27,7 @@ const App = () => {
                         <Navigation />
                     </header>
                 </div>
-                <Route exact path="/" component={Home} />
+                <Route exact path="/" component={Landing} />
                 <PrivateRoute path="/home" component={Home} />
                 <PrivateRoute path="/account" component={Account} />
                 <Route path="/signin" component={SignIn} />
