@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 import CheckoutSteps from '../components/CheckoutSteps';
 import { createOrder } from '../actions/orderActions';
+import { ORDER_CREATE_RESET } from '../constants/orderConstants';
 import firebase from 'firebase/app'
 import 'firebase/auth';
 function PlaceOrderScreen(props) {
@@ -23,7 +24,22 @@ function PlaceOrderScreen(props) {
   const totalPrice = itemsPrice + shippingPrice + taxPrice;
 
   const dispatch = useDispatch();
+
 let userInfo;
+firebase.auth().onAuthStateChanged((user) => {
+          
+  if (user) {
+    userInfo=user.uid;
+      //setUserInfo(user.uid);
+     // alert("userInfo:"+userInfo)
+      // User logged in already or has just logged in.
+      console.log("User has logged in and userid is")
+      console.log(user.uid);
+  } else {
+      // User not logged in or has just logged out.
+      console.log("User not logged in")
+  }
+});
   
     
 
@@ -39,26 +55,14 @@ let userInfo;
     
   }
    useEffect(() => {
-    firebase.auth().onAuthStateChanged((user) => {
-          
-      if (user) {
-        userInfo=user.uid;
-          //setUserInfo(user.uid);
-         // alert("userInfo:"+userInfo)
-          // User logged in already or has just logged in.
-          console.log("User has logged in and userid is")
-          console.log(user.uid);
-      } else {
-          // User not logged in or has just logged out.
-          console.log("User not logged in")
-      }
-  });
+    
     if (success) {
       //alert(order._id)
       props.history.push("/order/" + order._id);
+      dispatch({ type: ORDER_CREATE_RESET });
     }
 
-  }, [success]); 
+  }, [success]); //dispatch, order, props.history, success
 
   return <div>
     <CheckoutSteps step1 step2 step3 step4 ></CheckoutSteps>

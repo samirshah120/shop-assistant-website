@@ -214,9 +214,9 @@ function ProductDetails(props) {
           }}
           label="count" required
         >
-          <MenuItem value="">
+          {/* <MenuItem value="">
             <em>None</em>
-          </MenuItem>
+          </MenuItem> */}
           <MenuItem value={1}>1</MenuItem>
           <MenuItem value={2}>2</MenuItem>
           <MenuItem value={3}>3</MenuItem>
