@@ -199,14 +199,16 @@ const Products = (props) => {
                 <br />
                 <h1 >{pageTitle}</h1>
                 <br />
-                <div className={classes.horizontal}>
+                <div>
                     <Search searchValue={searchValue} label="Search Products" />
                     <div>
                         Sort by:
+                        <div className={classes.horizontal}>
                         <select onChange={sortBy}>
                             <option value="asc">Price: Low to High</option>
                             <option value="desc">Price: High to Low</option>
                         </select>
+                        </div>
                     </div>
                 </div>
                 <br />

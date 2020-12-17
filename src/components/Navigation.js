@@ -1,5 +1,5 @@
 import React, { useContext } from 'react';
-import { NavLink } from 'react-router-dom';
+import { NavLink, Link } from 'react-router-dom';
 import { AuthContext } from '../firebase/Auth';
 import { Button } from 'react-bootstrap';
 import { Navbar } from 'react-bootstrap';
@@ -12,10 +12,12 @@ import '../App.css';
 
 const Navigation = () => {
     const { currentUser } = useContext(AuthContext);
+    console.log(currentUser.email)
     return <div>{currentUser ? <NavigationAuth /> : <NavigationNonAuth />}</div>;
 };
 
 const NavigationAuth = () => {
+    const { currentUser } = useContext(AuthContext);
     return (
         // <nav className="navigation">
         //     <ul>
@@ -58,10 +60,12 @@ const NavigationAuth = () => {
                         <NavDropdown.Item href="#action/3.4">Contact Us</NavDropdown.Item>
                     </NavDropdown> */}
                 </Nav>
-                <Form inline>
+                {/* <Form inline>
                     <FormControl type="text" placeholder="Search" className="mr-sm-2" />
                     <Button variant="outline-success">Search</Button>
-                </Form>
+                </Form> */}
+                 <p>Welcome {currentUser.email}</p>
+
             </Navbar.Collapse>
         </Navbar>
     );
