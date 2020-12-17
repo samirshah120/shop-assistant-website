@@ -324,4 +324,9 @@ dd {
   display: inline-block;
   text-align: right;
   /* float: left; */
+}
+.Shipform input{  
+	display: inline-block;
+	text-align: left;
+	/* float: right; */
 } 

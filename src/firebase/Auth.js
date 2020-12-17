@@ -17,9 +17,9 @@ export const AuthProvider = ({ children }) => {
         if (user) {
             // User logged in already or has just logged in.
             console.log("User has logged in and userid is")
-            console.log(user.uid);
-            console.log('printname')
-            console.log(user.email)
+            //console.log(user.uid);
+            //console.log('printname')
+            //console.log(user.email)
         } else {
             // User not logged in or has just logged out.
             console.log("User not logged in")
