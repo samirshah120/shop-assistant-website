@@ -9,16 +9,17 @@ import 'firebase/auth';
 
 function CartScreen(props) {
   const [userInfo, setUserInfo] = useState(undefined);
-  console.log("inside cartscreen");
-  const cart = useSelector(state => state.cart);
-
-  const { cartItems } = cart;
-
   const productId = props.match.params.id;
+  console.log("inside cartscreen");
   const qty = props.location.search ? Number(props.location.search.split("=")[1]) : 1;
+  const cart = useSelector(state => state.cart);
+  const { cartItems,error } = cart;
+
   console.log("qty:"+qty)
   console.log("productId:"+productId)
+
   const dispatch = useDispatch();
+
   const removeFromCartHandler = (productId) => {
     dispatch(removeFromCart(productId));
   }
@@ -26,7 +27,7 @@ function CartScreen(props) {
     if (productId) {
       dispatch(addToCart(productId, qty));
     }
-  }, []);
+  }, [dispatch, productId, qty]);
 
   firebase.auth().onAuthStateChanged((user) => {
         

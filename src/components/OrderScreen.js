@@ -1,19 +1,19 @@
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
-import { createOrder, detailsOrder, payOrder } from '../actions/orderActions';
+import { createOrder, detailsOrder } from '../actions/orderActions';
 function OrderScreen(props) {
 
-  const orderPay = useSelector(state => state.orderPay);
-  const { loading: loadingPay, success: successPay, error: errorPay } = orderPay;
+  const orderId = props.match.params.id;
+  const orderDetails = useSelector((state) => state.orderDetails);
+  const { order, loading, error } = orderDetails;
+  const orderPay = useSelector((state) => state.orderPay);
+
   const dispatch = useDispatch();
   useEffect(() => {
     
-      dispatch(detailsOrder(props.match.params.id));
-  }, []);
-
-  const orderDetails = useSelector(state => state.orderDetails);
-  const { loading, order, error } = orderDetails;
+      dispatch(detailsOrder(orderId));
+  }, [orderId]);
 
   return loading ? <div>Loading ...</div> : error ? <div>{error}</div> :
 
@@ -38,7 +38,7 @@ function OrderScreen(props) {
               Payment Method: {order.payment.paymentMethod}
             </div>
             <div>
-              {order.isPaid ? "Paid at " + order.paidAt : "Not Paid."}
+              {"Paid"}
             </div>
           </div>
           <div>

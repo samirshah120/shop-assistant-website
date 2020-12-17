@@ -5,6 +5,7 @@ import { savePayment } from '../actions/cartActions';
 import CheckoutSteps from '../components/CheckoutSteps';
 
 function PaymentScreen(props) {
+  const cart = useSelector((state) => state.cart);
   const [paymentMethod, setPaymentMethod] = useState('');
 
   const dispatch = useDispatch();
@@ -24,7 +25,7 @@ function PaymentScreen(props) {
               <h2>Payment</h2>
             </li>
 
-            <li>
+           {/*  <li>
               <div>
                 <input
                   type="radio"
@@ -35,7 +36,7 @@ function PaymentScreen(props) {
                 ></input>
                 <label for="paymentMethod">Paypal</label>
               </div>
-            </li>
+            </li> */}
             <li>
               <div>
                 <input type="radio" name="paymentMethod" id="paymentMethod" value="Credit/Debit "
