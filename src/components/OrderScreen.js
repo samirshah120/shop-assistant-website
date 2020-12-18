@@ -14,7 +14,7 @@ function OrderScreen(props) {
   const { order, loading, error } = orderDetails;
   const orderPay = useSelector((state) => state.orderPay);
   const { currentUser } = useContext(AuthContext);
-
+  const cart = useSelector(state => state.cart);
 
   const dispatch = useDispatch();
   useEffect(() => {
@@ -67,8 +67,8 @@ function OrderScreen(props) {
             doc.setFontSize(20).text(`The total cost is : ${order.totalPrice}`, 10, 50)
             doc.setFontSize(10).text(`Order placed on ${currentUser.metadata.lastSignInTime}. Thank you for Shopping with us!`, 10, 60);
             doc.setFontSize(10).text("Contact us at customercare@business.com for enquiry", 10, 70);
-            doc.setFontSize(10).text(`It will be shipped to ${order.shipping.address} ${order.shipping.city} ${order.shipping.postalCode}${order.shipping.country}`, 10, 80)
-            doc.setFontSize(10).text(`The payment was done by ${order.payment.paymentMethod}`, 10, 90)
+            doc.setFontSize(10).text(`It will be shipped to ${cart.shippingAddress.address} ${cart.shippingAddress.city} ${cart.shippingAddress.postalCode}${cart.shippingAddress.country}`, 10, 80)
+            doc.setFontSize(10).text(`The payment was done by Credit/Debit`, 10, 90)
             doc.setFontSize(10).text(orderstr, 10, 100);
             doc.save("Order_receipt.pdf");
           }}
@@ -84,8 +84,8 @@ function OrderScreen(props) {
               Shipping
           </h3>
             <div>
-              {order.shipping.address}, {order.shipping.city},
-          {order.shipping.postalCode}, {order.shipping.country},
+              {cart.shippingAddress.address}, {cart.shippingAddress.city},
+          {cart.shippingAddress.postalCode}, {cart.shippingAddress.country},
           </div>
             <div>
               {order.isDelivered ? "Delivered at " + order.deliveredAt : "Not Delivered."}
@@ -94,7 +94,7 @@ function OrderScreen(props) {
           <div>
             <h3>Payment</h3>
             <div>
-              Payment Method: {order.payment.paymentMethod}
+              Payment Method: {order.paymentMethod}
             </div>
             <div>
               {"Paid"}

@@ -18,11 +18,29 @@ import {
   orderDeleteReducer,
 } from './reducers/orderReducers';
 
-const cartItems = Cookie.getJSON('cartItems') || [];
+//const cartItems = Cookie.getJSON('cartItems') || [];
+
+// const initialState = {
+//   cart: { cartItems, shipping: {}, payment: {} }
+// };
 
 const initialState = {
-  cart: { cartItems, shipping: {}, payment: {} }
+  userSignin: {
+    userInfo: localStorage.getItem('userInfo')
+      ? JSON.parse(localStorage.getItem('userInfo'))
+      : null,
+  },
+  cart: {
+    cartItems: localStorage.getItem('cartItems')
+      ? JSON.parse(localStorage.getItem('cartItems'))
+      : [],
+    shippingAddress: localStorage.getItem('shippingAddress')
+      ? JSON.parse(localStorage.getItem('shippingAddress'))
+      : {},
+    paymentMethod: 'Debit/Credit',
+  },
 };
+
 const reducer = combineReducers({
   productList: productListReducer,
   productDetails: productDetailsReducer,

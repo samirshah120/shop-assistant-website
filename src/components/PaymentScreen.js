@@ -41,7 +41,7 @@ function PaymentScreen(props) {
               <div>
                 <input type="radio" name="paymentMethod" id="paymentMethod" value="Credit/Debit "
                   onChange={(e) => setPaymentMethod(e.target.value)}
-                ></input>
+                required ></input>
                 <label for="paymentMethod">Credit/Debit</label>
               </div>
             </li>

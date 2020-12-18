@@ -13,11 +13,11 @@ function PlaceOrderScreen(props) {
   //const [userInfo, setUserInfo] = useState(undefined);
 
   const { cartItems, shipping, payment } = cart;
-  if (!shipping.address) {
-    props.history.push("/shipping");
-  } else if (!payment.paymentMethod) {
-    props.history.push("/payment");
-  }
+  // if (!shipping.address) {
+  //   props.history.push("/shipping");
+  // } else if (!payment.paymentMethod) {
+  //   props.history.push("/payment");
+  // }
   const itemsPrice = cartItems.reduce((a, c) => a + c.price * c.qty, 0);
   const shippingPrice = itemsPrice > 100 ? 0 : 10;
   const taxPrice = 0.15 * itemsPrice;
@@ -73,14 +73,14 @@ firebase.auth().onAuthStateChanged((user) => {
             Shipping
           </h3>
           <div>
-            {cart.shipping.address}, {cart.shipping.city},
-          {cart.shipping.postalCode}, {cart.shipping.country},
+            {cart.shippingAddress.address}, {cart.shippingAddress.city},
+          {cart.shippingAddress.postalCode}, {cart.shippingAddress.country},
           </div>
         </div>
         <div>
           <h3>Payment</h3>
           <div>
-            Payment Method: {cart.payment.paymentMethod}
+            Payment Method: {cart.paymentMethod}
           </div>
         </div>
         <div>

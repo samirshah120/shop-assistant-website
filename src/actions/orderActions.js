@@ -61,6 +61,7 @@ const detailsOrder = (orderId) => async (dispatch, getState) => {
         { }
     });
     dispatch({ type: ORDER_DETAILS_SUCCESS, payload: data })  
+    dispatch({ type: CART_EMPTY });
   } catch (error) {
     dispatch({ type: ORDER_DETAILS_FAIL, payload: error.message });
   }
