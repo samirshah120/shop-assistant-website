@@ -69,16 +69,16 @@ firebase.auth().onAuthStateChanged((user) => {
     <div className="placeorder">
       <div className="placeorder-info">
         <div>
-          <h3>
+          <h1>
             Shipping
-          </h3>
+          </h1>
           <div>
             {cart.shippingAddress.address}, {cart.shippingAddress.city},
           {cart.shippingAddress.postalCode}, {cart.shippingAddress.country},
           </div>
         </div>
         <div>
-          <h3>Payment</h3>
+          <h2>Payment</h2>
           <div>
             Payment Method: {cart.paymentMethod}
           </div>

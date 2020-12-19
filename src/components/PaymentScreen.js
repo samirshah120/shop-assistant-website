@@ -22,7 +22,7 @@ function PaymentScreen(props) {
         <form onSubmit={submitHandler}>
           <ul className="form-container">
             <li>
-              <h2>Payment</h2>
+              <h1>Payment</h1>
             </li>
 
            {/*  <li>
