@@ -147,7 +147,7 @@ dd {
 
 .active {
 	font-weight: bold;
-  color: red !important;
+  color:#ee0000 !important;
   padding: 3px;
   margin: 5px;
 }
@@ -265,13 +265,13 @@ dd {
   }
   .placeorder-action {
 	
-	border: 0.1rem #c0c0c0 solid;
+	border: 0.1rem #767676 solid;
 	border-radius: 0.5rem;
 	background-color: #fcfcfc;
 	padding: 1rem;
   }
   .placeorder-info > div {
-	border: 0.1rem #c0c0c0 solid;
+	border: 0.1rem #767676 solid;
 	border-radius: 0.5rem;
 	background-color: #fcfcfc;
 	padding: 1rem;
@@ -307,8 +307,8 @@ dd {
 	margin: 1rem auto;
   }
   .checkout-steps > div {
-	border-top: 0.3rem #c0c0c0 solid;
-	color: #c0c0c0;
+	border-top: 0.3rem #767676 solid;
+	color: #767676;
 	flex: 1 1;
 	padding-top: 1rem;
   }
@@ -330,3 +330,6 @@ dd {
 	text-align: left;
 	/* float: right; */
 } 
+.download{
+	background-color: #0072ee;
+}

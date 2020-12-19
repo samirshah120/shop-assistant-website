@@ -26,10 +26,10 @@ function OrderScreen(props) {
     <div>
       <div>
         <Button
+          className="download"
           variant="primary"
           style={{ marginBottom: "15px" }}
           onClick={(props) => {
-
             const doc = new jsPDF();
             console.log('reached carItems');
             let orderstr = "";
@@ -80,9 +80,9 @@ function OrderScreen(props) {
       <div className="placeorder">
         <div className="placeorder-info">
           <div>
-            <h3>
+            <h1>
               Shipping
-          </h3>
+          </h1>
             <div>
               {cart.shippingAddress.address}, {cart.shippingAddress.city},
           {cart.shippingAddress.postalCode}, {cart.shippingAddress.country},
@@ -92,7 +92,7 @@ function OrderScreen(props) {
             </div>
           </div>
           <div>
-            <h3>Payment</h3>
+            <h2>Payment</h2>
             <div>
               Payment Method: {order.paymentMethod}
             </div>

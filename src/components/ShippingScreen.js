@@ -31,7 +31,7 @@ function ShippingScreen(props) {
       <form onSubmit={submitHandler} >
         <div>
           <div>
-            <h2>Shipping</h2>
+            <h1>Shipping</h1>
           </div>
           <div>
             <label htmlFor="address">
